@@ -8,6 +8,12 @@ class Model private constructor() {
         val instance = Model()
     }
 
+    init {
+        for (i in 1..20) {
+            students.add(Student("Student $i", "$i", "http://me.png/$i", "Address $i", false))
+        }
+    }
+
     fun getStudents(): MutableList<Student> {
         return this.students
     }
