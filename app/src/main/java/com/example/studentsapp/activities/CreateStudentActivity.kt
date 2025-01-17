@@ -31,5 +31,9 @@ class CreateStudentActivity : AppCompatActivity() {
         this.closeActivity(view)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
 }
