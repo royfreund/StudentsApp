@@ -12,4 +12,5 @@
     <string name="edit_label">EDIT</string>
     <string name="student_image_description">image</string>
     <string name="student_details_screen_label">Student Details</string>
+    <string name="delete_label">DELETE</string>
 </resources>

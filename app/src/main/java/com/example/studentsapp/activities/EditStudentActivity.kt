@@ -1,8 +1,7 @@
 package com.example.studentsapp.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,7 @@ import com.example.studentsapp.model.Student
 
 class EditStudentActivity : AppCompatActivity() {
     private var student: Student? = null
+    private var studentIndex: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,53 +19,45 @@ class EditStudentActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        student = intent.getSerializableExtra("student") as? Student
-        
-        student?.let { loadStudentData(it) }
+        studentIndex = intent.getIntExtra("student_index", 0)
+        student = Model.instance.getStudentByIndex(studentIndex)
 
-        findViewById<Button>(R.id.btnSave).setOnClickListener { saveStudent() }
-        findViewById<Button>(R.id.btnCancel).setOnClickListener { finish() }
-        findViewById<Button>(R.id.btnDelete).setOnClickListener { deleteStudent() }
+        loadStudentData(student)
     }
 
-    private fun loadStudentData(student: Student) {
-        findViewById<EditText>(R.id.etName).setText(student.name)
-        findViewById<EditText>(R.id.etId).setText(student.id)
-        findViewById<EditText>(R.id.etPhone).setText(student.phone)
-        findViewById<EditText>(R.id.etAddress).setText(student.address)
-        findViewById<CheckBox>(R.id.cbChecked).isChecked = student.isChecked
+    private fun loadStudentData(student: Student?) {
+        findViewById<EditText>(R.id.etName).setText(student?.name)
+        findViewById<EditText>(R.id.etId).setText(student?.id)
+        findViewById<EditText>(R.id.etPhone).setText(student?.phone)
+        findViewById<EditText>(R.id.etAddress).setText(student?.address)
+        findViewById<CheckBox>(R.id.cbChecked).isChecked = student?.isChecked ?: false
     }
 
-    private fun saveStudent() {
+    fun updateStudent(view: View) {
         val name = findViewById<EditText>(R.id.etName).text.toString()
         val id = findViewById<EditText>(R.id.etId).text.toString()
         val phone = findViewById<EditText>(R.id.etPhone).text.toString()
         val address = findViewById<EditText>(R.id.etAddress).text.toString()
         val isChecked = findViewById<CheckBox>(R.id.cbChecked).isChecked
 
-        student?.let {
-            val updatedStudent = Student(name, id, phone, address, isChecked)
-            Model.instance.updateStudent(updatedStudent)
-        }
-        navigateToStudentsList()
+        val updatedStudent = Student(name, id, phone, address, isChecked)
+        Model.instance.updateStudent(studentIndex, updatedStudent)
+
+        closeActivity(view)
     }
 
-    private fun deleteStudent() {
-        student?.let {
-            Model.instance.removeStudent(it)
-        }
-        navigateToStudentsList()
+    fun deleteStudent(view: View) {
+        Model.instance.removeStudent(studentIndex)
+
+        closeActivity(view)
     }
 
-    private fun navigateToStudentsList() {
-        val intent = Intent(this, StudentsRecyclerViewActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        startActivity(intent)
+    fun closeActivity(view: View) {
         finish()
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed()
+        onBackPressed()
         return true
     }
-} 
+}
