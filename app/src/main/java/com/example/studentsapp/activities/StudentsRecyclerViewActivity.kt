@@ -29,8 +29,11 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
             }
 
             override fun onStudentClick(student: Student?) {
-                Log.i("TAG", "Student $student")
-            }
+                val intent = Intent(this@StudentsRecyclerViewActivity, StudentDetailsActivity::class.java)
+    intent.putExtra("student", student)
+    startActivity(intent)
+    Log.i("TAG", "Student $student")
+}
         }
 
         studentsRecyclerView.adapter = adapter
