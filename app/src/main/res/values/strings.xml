@@ -9,4 +9,8 @@
     <string name="checked_label">Checked</string>
     <string name="cancel_label">Cancel</string>
     <string name="save_label">Save</string>
+    <string name="edit_label">EDIT</string>
+    <string name="student_image_description">image</string>
+    <string name="student_details_screen_label">Student Details</string>
+    <string name="delete_label">DELETE</string>
 </resources>

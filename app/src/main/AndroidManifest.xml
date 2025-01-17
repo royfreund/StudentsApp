@@ -19,13 +19,25 @@
         <activity
             android:name=".activities.StudentsRecyclerViewActivity"
             android:exported="true"
-            android:label="@string/students_list_screen_label">
+            android:label="@string/students_list_screen_label"
+            android:theme="@style/Theme.StudentsApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.StudentDetailsActivity"
+            android:exported="false"
+            android:label="@string/student_details_screen_label"
+            android:parentActivityName=".activities.StudentsRecyclerViewActivity"
+            android:theme="@style/Theme.StudentsApp" />
+        <activity
+            android:name=".activities.EditStudentActivity"
+            android:exported="false"
+            android:label="Edit Student"
+            android:theme="@style/Theme.StudentsApp" />
     </application>
 
 </manifest>
