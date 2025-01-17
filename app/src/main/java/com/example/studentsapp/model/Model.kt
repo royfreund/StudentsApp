@@ -8,12 +8,6 @@ class Model private constructor() {
         val instance = Model()
     }
 
-    init {
-        for (i in 1..20) {
-            students.add(Student("Student $i", "$i", "http://me.png/$i", "Address $i", false))
-        }
-    }
-
     fun getStudents(): MutableList<Student> {
         return this.students
     }
@@ -38,6 +32,10 @@ class Model private constructor() {
     fun updateStudent(student: Student) {
         val index = this.students.indexOf(student)
         this.students[index] = student
+    }
+
+    fun getStudentsCount(): Int {
+        return this.students.size
     }
 
 }

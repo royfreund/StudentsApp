@@ -1,10 +1,13 @@
-package com.example.studentsapp
+package com.example.studentsapp.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studentsapp.R
 import com.example.studentsapp.model.Model
 import com.example.studentsapp.model.Student
 import com.example.studentsapp.utils.OnItemClickListener
@@ -31,5 +34,15 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
         }
 
         studentsRecyclerView.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val adapter = findViewById<RecyclerView>(R.id.betterStudentsList).adapter as StudentsRecyclerAdapter
+        adapter.notifyDataSetChanged()
+    }
+
+    fun openCreateStudentActivity(view: View) {
+        view.context.startActivity(Intent(view.context, CreateStudentActivity::class.java))
     }
 }
