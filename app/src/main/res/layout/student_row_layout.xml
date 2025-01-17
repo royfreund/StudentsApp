@@ -12,7 +12,7 @@
         android:id="@+id/ivStudentImage"
         android:layout_width="78dp"
         android:layout_height="78dp"
-        android:contentDescription="@string/app_name"
+        android:contentDescription="@string/students_list_screen_label"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
