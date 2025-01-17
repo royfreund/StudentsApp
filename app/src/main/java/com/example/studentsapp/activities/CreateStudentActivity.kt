@@ -22,12 +22,11 @@ class CreateStudentActivity : AppCompatActivity() {
     fun saveStudent(view: View) {
         val studentName = findViewById<EditText>(R.id.tvNameInput).text.toString()
         val studentId = findViewById<EditText>(R.id.tvIdInput).text.toString()
-        val avatar = ""
         val studentPhone = findViewById<EditText>(R.id.tvPhoneInput).text.toString()
         val studentAddress = findViewById<EditText>(R.id.tvAddressInput).text.toString()
         val studentIsChecked = findViewById<CheckBox>(R.id.btnCheckbox).isChecked
 
-        val student = Student(studentName, studentId, avatar, studentPhone, studentAddress, studentIsChecked)
+        val student = Student(studentName, studentId, studentPhone, studentAddress, studentIsChecked)
         Model.instance.addStudent(student)
         this.closeActivity(view)
     }

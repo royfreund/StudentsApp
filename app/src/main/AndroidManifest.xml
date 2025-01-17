@@ -33,6 +33,11 @@
             android:label="@string/student_details_screen_label"
             android:parentActivityName=".activities.StudentsRecyclerViewActivity"
             android:theme="@style/Theme.StudentsApp" />
+        <activity
+            android:name=".activities.EditStudentActivity"
+            android:exported="false"
+            android:label="Edit Student"
+            android:theme="@style/Theme.StudentsApp" />
     </application>
 
 </manifest>

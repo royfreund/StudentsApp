@@ -1,5 +1,6 @@
 package com.example.studentsapp.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -29,7 +30,9 @@ class StudentDetailsActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.editButton).setOnClickListener {
-            // TODO: Implement edit functionality
+            val intent = Intent(this, EditStudentActivity::class.java)
+            intent.putExtra("student", student)
+            startActivity(intent)
         }
     }
 
