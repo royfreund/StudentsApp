@@ -12,25 +12,19 @@ class Model private constructor() {
         return this.students
     }
 
-    fun getStudentById(id: String): Student? {
-        for (student in this.students) {
-            if (student.id == id) {
-                return student
-            }
-        }
-        return null
+    fun getStudentByIndex(index: Int): Student {
+        return this.students[index]
     }
 
     fun addStudent(student: Student) {
         this.students.add(student)
     }
 
-    fun removeStudent(student: Student) {
-        this.students.remove(student)
+    fun removeStudent(index: Int) {
+        this.students.removeAt(index)
     }
 
-    fun updateStudent(student: Student) {
-        val index = this.students.indexOf(student)
+    fun updateStudent(index: Int, student: Student) {
         this.students[index] = student
     }
 
